@@ -6,12 +6,14 @@ print("Task 1_1: ", fruit)
 
 # task1_2
 score = 75
-print("\nTask 1_2: ",75>=60)
+print("\nTask 1_2: ",score>=60)
 
 # task1_3
 is_even = False
 is_odd = True
-print("\nTask 1_3: ", is_even, is_odd)
+print("\nTask 1_3 (1): ", is_even and is_odd)
+print("\nTask 1_3 (2): ", is_even or is_odd)
+
 
 # task2
 x = 4.123
