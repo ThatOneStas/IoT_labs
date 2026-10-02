@@ -21,7 +21,7 @@ while x <= 0.9:
     print(f"{x:.2f} (x): {result}")
 
 # Task 2
-print("Завдання 2:")
+print("\nЗавдання 2:")
 start = 0.0
 end = 0.5
 step = 0.05
