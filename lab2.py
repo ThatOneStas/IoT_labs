@@ -6,7 +6,7 @@ step = 0.05
 start = 0.3
 end = 0.9
 x = start
-while x <= 0.9:
+while x <= end + 1e-9:
     result = 0
     if x <= 0.4:
         try:
@@ -17,8 +17,8 @@ while x <= 0.9:
         result = math.cos(math.sin(x**2))
     else:
         result = math.pow((x**3 + 0.5), 1 / 7)
-    x += step
     print(f"{x:.2f} (x): {result}")
+    x += step
 
 # Task 2
 print("\nЗавдання 2:")
