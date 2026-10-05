@@ -16,7 +16,7 @@ while x <= end + 1e-9:
     elif x > 0.4 and x < 0.6:
         result = math.cos(math.sin(x**2))
     else:
-        result = math.pow((x**3 + 0.5), 1 / 7)
+        result = math.pow((x**3 + 0.5), 1/7)
     print(f"{x:.2f} (x): {result}")
     x += step
 
@@ -36,7 +36,7 @@ while x <= end + 1e-9:
     while abs(term) >= mistake:
         series_sum += term
         n += 1
-        term = ((-1) ** (n + 1)) * (x ** n) / n
+        term = (-1)**(n + 1) * x**n / n
 
     print(f"{x:.2f} (x): Сума ряду = {series_sum:.6f}; Кількість доданків (n) = {n - 1}")
     x += step
