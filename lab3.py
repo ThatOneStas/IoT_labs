@@ -1,4 +1,3 @@
-
 def meanVsMedian(num_list):
     # нижче додав summary, аби не юзати коментарі
     '''
