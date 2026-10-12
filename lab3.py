@@ -14,13 +14,13 @@ def my_sum(num_list):
 def meanVsMedian(num_list):
     '''
     Accepts a list of numbers and returns a string indicating whether
-    the mean or median is greater,or if they are the same.
+    the mean or median is greater, or if they are the same.
     Raises an exception for even-length lists.
     '''
     result = ""
     if len(num_list) % 2 == 0:
         raise Exception("Only odd-length sequences are allowed")
-    median = bbl_sort(num_list)[len(num_list) // 2]
+    median = bbl_sort(num_list[:])[len(num_list) // 2]
     mean = my_sum(num_list) / len(num_list)
     if(median > mean):
         result = "median"
