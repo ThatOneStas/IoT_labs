@@ -71,6 +71,7 @@ def main():
     pet1 = Pet(name="Buddy", breed=Kind.DOG, age=3, greeting="Hello", mass=30)
     pet2 = Pet(name="Whiskers", breed=Kind.CAT, age=5, greeting="Hi", mass=10)
     pet3 = Pet(name="Tweety", breed=Kind.BIRD, age=1, greeting="Hello", mass=0.1)
+    pet4 = Pet(name="Mikey", breed=Kind.DOG, age=10, greeting="Hello", mass=20)
 
     home.add_pet(pet1)
     home.add_pet(pet2)
@@ -79,9 +80,10 @@ def main():
     for pet in home.get_pets():
         print(pet)
 
-    friends_check = home.areFriends([pet1, pet2, pet3])
+    pet_list = [pet1, pet2, pet3, pet4]
+    friends_check = home.areFriends(pet_list)
     print("\nAre the pets friends based on age proximity?")
-    for i, pet in enumerate([pet1, pet2, pet3]):
+    for i, pet in enumerate(pet_list):
         print(f"{pet.name}: {'Yes' if friends_check[i] else 'No'}")
 
     print() # Seperate the output for destructors' messages
