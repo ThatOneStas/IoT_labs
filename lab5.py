@@ -30,15 +30,18 @@ class Pet:
     def __str__(self):
         return f"{self.name}, {self.breed}, Age: {self.age}, Greeting: {self.greeting}, Mass: {self.mass}"
 
-    def isPolite(self):
+    def is_polite(self):
         return True if self.greeting == "Hello" else False
     
 class Home:
     # Constructor
     def __init__(self,
-                 pets = []
+                 pets = None
                  ):
-        self.pets = pets
+        if pets == None:
+            self.pets = []    
+        else:
+            self.pets = pets
 
     # Descructor
     def __del__(self):
@@ -56,7 +59,7 @@ class Home:
     def get_pets(self):
         return self.pets
 
-    def areFriends(self, pets):
+    def are_friends(self, pets):
         result = []
         for pet in pets:
             flag = False
@@ -81,7 +84,7 @@ def main():
         print(pet)
 
     pet_list = [pet1, pet2, pet3, pet4]
-    friends_check = home.areFriends(pet_list)
+    friends_check = home.are_friends(pet_list)
     print("\nAre the pets friends based on age proximity?")
     for i, pet in enumerate(pet_list):
         print(f"{pet.name}: {'Yes' if friends_check[i] else 'No'}")
