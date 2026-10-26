@@ -14,7 +14,7 @@ class Conference:
             self.__place = place
             # Initializing public fields
             self.property_one = "Property One"
-            self.property_two = "Property Two"
+            self.property_two = 2
     # Destructor
     def __del__(self):
         print(f"Deleting: {self.__title}")
@@ -28,7 +28,7 @@ class Conference:
     def get_participants_number(self):
         return self.__participants_number
     def set_participants_number(self, participants_number):
-        self.get_participants_number = participants_number
+        self.__participants_number = participants_number
 
     def get_price(self):
         return self.__price
