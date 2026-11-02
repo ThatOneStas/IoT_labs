@@ -35,16 +35,14 @@ def logged(exception=Exception, mode=None):
                     format="%(asctime)s [%(levelname)s] %(message)s"
                 )
 
-            file_id = getattr(self, "full_path", getattr(self, "name", "file"))
-
-            logging.info(f"Starting execution of '{func.__name__}' for file: {file_id}")
+            logging.info(f"Starting execution of '{func.__name__}' for file: {self.full_path}")
 
             try:
                 result = func(self, *args, **kwargs)
-                logging.info(f"Successful completion of '{func.__name__}' for file: {file_id}")
+                logging.info(f"Successful completion of '{func.__name__}' for file: {self.full_path}")
                 return result
             except exception as err:
-                logging.error(f"Error occurred while executing '{func.__name__}' for file: {file_id}. {err}")
+                logging.error(f"Error occurred while executing '{func.__name__}' for file: {self.full_path}. {err}")
                 raise
         return wrapper
     return decorator
