@@ -46,8 +46,20 @@ class PrinterQueue:
         if self.current is None:
             self.queue = None
 
+    def queue_size(self):
+        result = 0
+
+        if self.current != None:
+            result += 1
+            tail = self.current.next()
+            while tail != None:
+                result += 1
+                tail = tail.next()
+
+        return result
+
     def __str__(self):
-        return self.current._get_chain()
+        return f"{self.current._get_chain()} ({self.queue_size()})" 
 
     def print_document(self):
         result = self.current
