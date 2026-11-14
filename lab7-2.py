@@ -1,7 +1,7 @@
 class Node:
-    def __init__(self, value, next: 'Node' = None):
+    def __init__(self, value, next: Node = None):
         self.value = value
-        self.next_ = next if next != None else None
+        self.next_ = next
 
     def next(self):
         return self.next_
@@ -21,13 +21,13 @@ class Node:
         return str(self.value)
 
 class PrinterQueue:
-    def __init__(self, element: Node = None):
-        self.current = element if element != None else None
+    def __init__(self):
+        self.current = None
         self.queue = None
 
     def add_to_queue(self, element: Node = None):
         if self.current == None:
-            self.current = element if element != None else None
+            self.current = element
             self.queue = None
         else:
             if self.queue == None:
@@ -38,13 +38,13 @@ class PrinterQueue:
                 self.queue = element
 
     def delete_from_queue(self):
-        if self.current is None:
-            return
-        
-        self.current = self.current.next_
-
-        if self.current is None:
-            self.queue = None
+        if self.current is not None:
+            self.current = self.current.next_
+            
+            if self.current is None:
+                self.queue = None
+            
+        return None
 
     def queue_size(self):
         result = 0
@@ -76,16 +76,23 @@ node2 = Node(200)
 node3 = Node(300)
 node1.next_ = node2
 node2.next_ = node3
+node4 = Node(400)
 
 node1.print_chain()
 node2.print_chain()
 print()
 
-queue = PrinterQueue(node1)
+queue = PrinterQueue()
+queue.add_to_queue(node1)
 queue.add_to_queue(node2)
 queue.add_to_queue(node3)
+queue.add_to_queue(node4)
 
 print(queue)
+
+queue.delete_from_queue()
+print(queue)    
+
 print(queue.print_document())
 print(queue.print_document())
 print(queue.print_document())
