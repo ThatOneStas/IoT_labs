@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, value, next: Node = None):
+    def __init__(self, value, next: 'Node' = None):
         self.value = value
         self.next_ = next
 
@@ -7,11 +7,13 @@ class Node:
         return self.next_
 
     def _get_chain(self):
-        result = f"{self.value}"
-        next_node = self.next_
-        while next_node != None:
-            result += f", {next_node.value}"
-            next_node = next_node.next()
+        result = None
+        if self is not None:
+            result = f"{self.value}"
+            next_node = self.next_
+            while next_node != None:
+                result += f", {next_node.value}"
+                next_node = next_node.next()
         return result
 
     def print_chain(self):
@@ -59,7 +61,10 @@ class PrinterQueue:
         return result
 
     def __str__(self):
-        return f"{self.current._get_chain()} ({self.queue_size()})" 
+        result = "Queue is empty (0)"
+        if self.current is not None:
+            result = f"{self.current._get_chain()} ({self.queue_size()})" 
+        return result
 
     def print_document(self):
         result = self.current
