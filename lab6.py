@@ -130,7 +130,7 @@ class File:
     @logged(exception=FileCorrupted)
     def read(self):
         try:
-            with open(self.full_path, 'r') as file:
+            with open(self.full_path, 'r', encoding="utf-8") as file:
                 content = file.read()
             # check the XML's validity
             ET.fromstring(content)
@@ -150,13 +150,16 @@ class File:
     @logged(exception=FileCorrupted)
     def append(self, content):
         try:
-            # check the XML's validity of given content
-            ET.fromstring(content)
-            with open(self.full_path, 'a', encoding='utf-8') as file:
-                ET.fromstring(file.read())  # Read existing content to ensure it's valid XML
-                file.write(content)
+            # check the XML's validity of given content (must be a single XML element)
+            new_element = ET.fromstring(content)
+            # parse the existing file: validates its structure and keeps the previous content
+            tree = ET.parse(self.full_path)
+            # add the new element to the end of the root element
+            tree.getroot().append(new_element)
+            # write the whole document back
+            tree.write(self.full_path, encoding='utf-8')
         except (ET.ParseError, OSError) as err:
-            raise FileCorrupted(f"File is corrupted or XML structure is invalid: {err}")
+            raise FileCorrupted(f"File is corrupted or XML structure is invalid: {err}") 
 
 def main():
     # Create testing folder
@@ -181,6 +184,12 @@ def main():
         print("Content:", file2.read())
         # write (file logger)
         file2.write("<root><item>New content 2</item></root>")
+        # append (console logger)
+        file1.append("<item>Appended 1</item>")
+        print("Content:", file1.read())
+        # append (file logger)
+        file2.append("<item>Appended 2</item>")
+        print("Content:", file2.read())
     except Exception as e:
         print(f"Error: {e}")
 
